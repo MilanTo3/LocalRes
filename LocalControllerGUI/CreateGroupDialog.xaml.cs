@@ -27,5 +27,18 @@ namespace LocalControllerGUI
 
             this.Close();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) {
+
+            UnitGroup group = new UnitGroup();
+            group.UnitName = UnitName.Text;
+
+            using (ResDbEntities rde = new ResDbEntities()) {
+                rde.UnitGroups.Add(group);
+                rde.SaveChanges();
+            }
+
+            this.Close();
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace LocalControllerGUI
     /// </summary>
     public partial class GroupsWindow : Window
     {
+        private List<UnitGroup> groups;
+
         public GroupsWindow() {
             InitializeComponent();
         }
@@ -26,37 +28,7 @@ namespace LocalControllerGUI
         public GroupsWindow(string argument) {
 
             InitializeComponent();
-            Canvas c1 = new Canvas();
-            c1.Width = 120;
-            c1.Height = 120;
-
-            Label label = new Label();
-            label.Content = "Mio Naganohara";
-            Canvas.SetLeft(label, 20);
-
-            Button button1 = new Button();
-            button1.Content = "Mio Naganohara";
-            Canvas.SetLeft(button1, 20);
-            Canvas.SetTop(button1, 100);
-            c1.Background = Brushes.Aqua;
-
-            c1.Children.Add(label);
-            c1.Children.Add(button1);
-            GroupCanvas.Children.Add(c1);
-
-            Canvas c2 = new Canvas();
-            c2.Width = 120;
-            c2.Height = 120;
-            c2.Background = Brushes.Aqua;
-            GroupCanvas.Children.Add(c2);
-            Canvas.SetTop(c2, 140);
-
-            Canvas c3 = new Canvas();
-            c3.Width = 120;
-            c3.Height = 120;
-            c3.Background = Brushes.Aqua;
-            GroupCanvas.Children.Add(c3);
-            Canvas.SetTop(c3, 280);
+            bindValues();
 
         }
 
@@ -69,6 +41,44 @@ namespace LocalControllerGUI
 
             CreateGroupDialog cgd = new CreateGroupDialog();
             cgd.ShowDialog();
+            bindValues();
+
+        }
+
+        private void bindValues() {
+
+            ResDbEntities rde = new ResDbEntities();
+            groups = rde.UnitGroups.ToList();
+
+            foreach (var group in groups) {
+                Binding myBinding = new Binding();
+                myBinding.Path = new PropertyPath("UnitName");
+                myBinding.Source = group;
+                myBinding.Mode = BindingMode.TwoWay;
+                myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+
+                Canvas c1 = new Canvas();
+                c1.Background = Brushes.Aqua;
+                Label groupName = new Label();
+                c1.Children.Add(groupName);
+                groupName.DataContext = group.UnitName;
+
+                BindingOperations.SetBinding(groupName, Label.ContentProperty, myBinding);
+
+                GroupCanvas.Children.Add(c1);
+            }
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e) {
+
+            using (ResDbEntities rde = new ResDbEntities()) {
+                foreach (var group in rde.UnitGroups.ToList()) {
+                    group.UnitName = ".";
+                    
+                }
+                rde.SaveChanges();
+            }
 
         }
     }

@@ -17,10 +17,10 @@ namespace LocalControllerGUI
     /// <summary>
     /// Interaction logic for ViewGenerator.xaml
     /// </summary>
-    public partial class ViewGenerator : Window
-    {
+    public partial class ViewGenerator : Window {
         public ViewGenerator() {
             InitializeComponent();
+            bindValues();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
@@ -31,6 +31,14 @@ namespace LocalControllerGUI
         private void Button_Click_1(object sender, RoutedEventArgs e) {
 
             this.Close();
+        }
+
+        private void bindValues() {
+
+            ResDbEntities resDb = new ResDbEntities();
+            var item = resDb.Units.ToList();
+            
+
         }
     }
 }

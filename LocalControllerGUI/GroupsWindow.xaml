@@ -13,6 +13,7 @@
             <Canvas Name="GroupCanvas" Height="1000" Width="520"/>
         </ScrollViewer>
         <Label Content="Local Controller name:" HorizontalAlignment="Left" FontSize="17" Margin="33,23,0,0" VerticalAlignment="Top" Width="533" Height="33"/>
+        <Button Content="test" HorizontalAlignment="Left" Margin="52,360,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
     </Grid>
 
 </Window>
