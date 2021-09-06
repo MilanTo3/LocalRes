@@ -30,5 +30,7 @@
         <Grid Grid.Row="1">
             <ContentControl Content="{Binding CurrentViewModel}"/>
         </Grid>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="343,388,0,-385" Grid.Row="1" VerticalAlignment="Top" Width="100" Command="{Binding NavCommand}" CommandParameter="student"/>
     </Grid>
+
 </Window>

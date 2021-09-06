@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MVVM1.ViewModel
 {
@@ -22,6 +23,8 @@ namespace MVVM1.ViewModel
             LoadStudents();
             DeleteCommand = new MyICommand(OnDelete,CanDelete);
             AddCommand = new MyICommand(OnAdd);
+            string info = ((App)Application.Current).LkRes;
+
         }
 
         public Student SelectedStudent

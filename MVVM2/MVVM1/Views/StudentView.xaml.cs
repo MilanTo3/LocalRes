@@ -24,6 +24,7 @@ namespace MVVM1.Views
         {
             InitializeComponent();
             this.DataContext = new MVVM1.ViewModel.StudentViewModel();
+
         }
     }
 }

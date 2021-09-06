@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ResDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LkRes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentActivePower" Type="float" />
+          <Property Name="MinimumActivePower" Type="float" />
+          <Property Name="MaximumActivePower" Type="float" />
+          <Property Name="ControlType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductionPrice" Type="float" />
+          <Property Name="GroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="UnitGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitNum" Type="int" />
+          <Property Name="CurrentProduction" Type="float" />
+          <Property Name="MaxProduction" Type="float" />
+          <Property Name="UnitName" Type="nvarchar" MaxLength="50" />
+          <Property Name="lkResId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="ResDbModelStoreContainer">
+          <EntitySet Name="LkRes" EntityType="Self.LkRes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitGroup" EntityType="Self.UnitGroup" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ResDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LkRe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentActivePower" Type="Double" />
+          <Property Name="MinimumActivePower" Type="Double" />
+          <Property Name="MaximumActivePower" Type="Double" />
+          <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductionPrice" Type="Double" />
+          <Property Name="GroupId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UnitGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitNum" Type="Int32" />
+          <Property Name="CurrentProduction" Type="Double" />
+          <Property Name="MaxProduction" Type="Double" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lkResId" Type="Int32" />
+          </EntityType>
+        <EntityContainer Name="ResDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LkRes" EntityType="Self.LkRe" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="UnitGroups" EntityType="Self.UnitGroup" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ResDbModelStoreContainer" CdmEntityContainer="ResDbEntities">
+          <EntitySetMapping Name="LkRes">
+            <EntityTypeMapping TypeName="ResDbModel.LkRe">
+              <MappingFragment StoreEntitySet="LkRes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="ResDbModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="CurrentActivePower" ColumnName="CurrentActivePower" />
+                <ScalarProperty Name="MinimumActivePower" ColumnName="MinimumActivePower" />
+                <ScalarProperty Name="MaximumActivePower" ColumnName="MaximumActivePower" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ProductionPrice" ColumnName="ProductionPrice" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitGroups">
+            <EntityTypeMapping TypeName="ResDbModel.UnitGroup">
+              <MappingFragment StoreEntitySet="UnitGroup">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UnitNum" ColumnName="UnitNum" />
+                <ScalarProperty Name="CurrentProduction" ColumnName="CurrentProduction" />
+                <ScalarProperty Name="MaxProduction" ColumnName="MaxProduction" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="lkResId" ColumnName="lkResId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

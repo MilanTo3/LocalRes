@@ -31,7 +31,8 @@ namespace MVVM1
 
         private void OnNav(string destination)
         {
-            switch(destination)
+            
+            switch (destination)
             {
                 case "start":
                     CurrentViewModel = startViewModel;

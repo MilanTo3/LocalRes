@@ -1,49 +1,49 @@
-﻿using System;
+﻿using MVVMSecondTry.Stores;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
-namespace MVVM1.ViewModel
+namespace MVVMSecondTry.ViewModels
 {
-    public class StartViewModel : BindableBase
+    public class StartViewModel : ViewModelBase
     {
 
         public ObservableCollection<string> controllers { get; set; }
         private string chosenSetup;
         private string controllerName;
-        public MyICommand routeCommand { get; set; }
+        public ICommand routeCommand { get; set; }
+        public ICommand navigate;
 
-        public StartViewModel() {
+        public StartViewModel(NavigationStore navigationStore) {
 
             loadControllers();
+            navigate = new NavigateCommand(navigationStore);
             routeCommand = new MyICommand(onRoute);
-
-        }
-
-        private void onRoute() {
 
         }
 
         private void loadControllers() {
 
+            controllers = new ObservableCollection<string>();
+            controllers.Add("New Controller");
+
             ResDbEntities rde = new ResDbEntities();
-
-            ObservableCollection<string> Controllers =
-                new ObservableCollection<string>();
-
-            Controllers.Add("New Local Controller");
-            foreach (LkRe lkre in rde.LkRes.ToList()) {
-                Controllers.Add(lkre.name);
+            foreach (LkRe controller in rde.LkRes.ToList()) {
+                controllers.Add(controller.name);
             }
-
-            controllers = Controllers;
 
         }
 
+        private void onRoute() {
+            navigate.Execute("group" + "|" + chosenSetup + "|" + controllerName);
+        }
+
         public string ChosenSetup {
-            get { Console.WriteLine($"Got {chosenSetup}"); return chosenSetup;}
+            get { Console.WriteLine($"Got {chosenSetup}"); return chosenSetup; }
             set {
                 if (chosenSetup != value) {
                     chosenSetup = value;
@@ -54,7 +54,7 @@ namespace MVVM1.ViewModel
         }
 
         public string ControllerName {
-            get { Console.WriteLine($"Got {controllerName}"); return controllerName;}
+            get { Console.WriteLine($"Got {controllerName}"); return controllerName; }
             set {
                 if (controllerName != value) {
                     controllerName = value;
@@ -63,5 +63,6 @@ namespace MVVM1.ViewModel
                 }
             }
         }
+
     }
 }

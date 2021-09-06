@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVVM1.Views
+namespace MVVMSecondTry.Views
 {
     /// <summary>
     /// Interaction logic for StartView.xaml
@@ -22,8 +22,6 @@ namespace MVVM1.Views
     {
         public StartView() {
             InitializeComponent();
-            this.DataContext = new MVVM1.ViewModel.StartViewModel();
         }
-
     }
 }

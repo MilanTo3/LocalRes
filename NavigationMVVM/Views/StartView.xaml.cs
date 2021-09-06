@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVVM1.Views
+namespace NavigationMVVM.Views
 {
     /// <summary>
     /// Interaction logic for StartView.xaml
@@ -22,8 +20,6 @@ namespace MVVM1.Views
     {
         public StartView() {
             InitializeComponent();
-            this.DataContext = new MVVM1.ViewModel.StartViewModel();
         }
-
     }
 }

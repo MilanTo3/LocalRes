@@ -13,5 +13,8 @@ namespace MVVM1
     /// </summary>
     public partial class App : Application
     {
+
+        public string LkRes { get; set; }
+
     }
 }
