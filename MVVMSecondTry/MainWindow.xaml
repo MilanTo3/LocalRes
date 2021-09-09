@@ -15,6 +15,12 @@
             <DataTemplate DataType="{x:Type viewmodels:GroupViewModel }">
                 <views:GroupView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:GeneratorsViewModel }">
+                <views:GeneratorsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:GeneratorViewModel }">
+                <views:GeneratorView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 

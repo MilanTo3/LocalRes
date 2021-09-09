@@ -13,15 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVVM1.Views
+namespace MVVMSecondTry.Views
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for GeneratorView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class GeneratorView : UserControl
     {
-        public HomeView()
-        {
+        public GeneratorView() {
             InitializeComponent();
         }
     }

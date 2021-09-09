@@ -16,6 +16,8 @@ namespace MVVMSecondTry
     public partial class App : Application
     {
 
+        public int LkRes { get; set; }
+
         protected override void OnStartup(StartupEventArgs e) {
 
             NavigationStore navigationStore = new NavigationStore();

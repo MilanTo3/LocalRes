@@ -13,17 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVVM1.Views
+namespace MVVMSecondTry.Views
 {
     /// <summary>
-    /// Interaction logic for StartView.xaml
+    /// Interaction logic for GeneratorsView.xaml
     /// </summary>
-    public partial class StartView : UserControl
+    public partial class GeneratorsView : UserControl
     {
-        public StartView() {
+        public GeneratorsView() {
             InitializeComponent();
-            this.DataContext = new MVVM1.ViewModel.StartViewModel();
         }
-
     }
 }

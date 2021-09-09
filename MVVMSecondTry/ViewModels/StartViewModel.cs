@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MVVMSecondTry.ViewModels
@@ -39,7 +40,25 @@ namespace MVVMSecondTry.ViewModels
         }
 
         private void onRoute() {
-            navigate.Execute("group" + "|" + chosenSetup + "|" + controllerName);
+            LkRe lkres = new LkRe();
+
+            if (chosenSetup == "New Controller") {
+                using (ResDbEntities rde = new ResDbEntities()) {
+                    lkres.name = controllerName;
+                    rde.LkRes.Add(lkres);
+                    rde.SaveChanges();
+                }
+
+            }
+            else {
+                using (ResDbEntities rde = new ResDbEntities()) {
+                    lkres = rde.LkRes.ToList().Find(x => x.name == chosenSetup);
+                }
+            }
+            ((App)Application.Current).LkRes = lkres.id;
+
+            navigate.Execute("group" + "|" + lkres.id);
+
         }
 
         public string ChosenSetup {
@@ -48,7 +67,6 @@ namespace MVVMSecondTry.ViewModels
                 if (chosenSetup != value) {
                     chosenSetup = value;
                     OnPropertyChanged("ChosenSetup");
-                    Console.WriteLine($"Changed setup. Bind successfull! {chosenSetup}");
                 }
             }
         }

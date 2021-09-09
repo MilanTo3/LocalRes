@@ -23,7 +23,13 @@ namespace MVVMSecondTry.Stores
             string[] info = ((string)parameter).Split('|');
 
             if (info[0] == "group") {
-                _navigationStore.CurrentViewModel = new GroupViewModel("");
+                _navigationStore.CurrentViewModel = new GroupViewModel(_navigationStore);
+            }else if (info[0] == "generators") {
+                _navigationStore.CurrentViewModel = new GeneratorsViewModel(info[1], _navigationStore);
+            }else if (info[0] == "generator") {
+                _navigationStore.CurrentViewModel = new GeneratorViewModel(info[1], _navigationStore);
+            }else if(info[0] == "start") {
+                _navigationStore.CurrentViewModel = new StartViewModel(_navigationStore);
             }
         }
     }

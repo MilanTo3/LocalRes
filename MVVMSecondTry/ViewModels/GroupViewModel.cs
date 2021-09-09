@@ -1,9 +1,12 @@
-﻿using System;
+﻿using MVVMSecondTry.Stores;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace MVVMSecondTry.ViewModels
@@ -15,17 +18,23 @@ namespace MVVMSecondTry.ViewModels
         private UnitGroup selectedGroup;
         public ObservableCollection<UnitGroup> Groups { get; set; }
         public MyICommand addCommand { get; set; }
-        public MyICommand testCommand { get; set; }
         private DispatcherTimer timer = new DispatcherTimer();
         private int LKRES;
+        public ICommand routeCommand { get; set; }
+        public ICommand navigate;
+        public MyICommand backNavigateCommand { get; set; }
+        public string WindowTitle { get; set; }
 
+        public GroupViewModel(NavigationStore navigationStore) {
 
-        public GroupViewModel(string lkResId) {
-
-            LKRES = int.Parse(lkResId);
+            LKRES = ((App)Application.Current).LkRes;
+            backNavigateCommand = new MyICommand(backCommand);
             addCommand = new MyICommand(addUnit);
-            testCommand = new MyICommand(changeValues);
             Groups = new ObservableCollection<UnitGroup>();
+            navigate = new NavigateCommand(navigationStore);
+            routeCommand = new MyICommand(onRoute);
+            ResDbEntities rde = new ResDbEntities();
+            WindowTitle = "Local Controller name: " + rde.LkRes.ToList().Find(x => x.id == LKRES).name;
             refreshGroups();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 10);
@@ -33,8 +42,18 @@ namespace MVVMSecondTry.ViewModels
 
         }
 
+        private void onRoute() {
+            timer.Stop();
+            navigate.Execute("generators" + "|" + selectedGroup.id);
+        }
+
+        private void backCommand() {
+            timer.Stop();
+            navigate.Execute("start|");
+        }
+
         private void UpdateTimer_Tick(object sender, EventArgs args) {
-            List<UnitGroup> dbgroups = new ResDbEntities().UnitGroups.ToList();
+            List<UnitGroup> dbgroups = new ResDbEntities().UnitGroups.ToList().FindAll(x => x.lkResId == LKRES);
 
             int i;
             for (i = 0; i < Groups.Count; i++) {
@@ -61,23 +80,12 @@ namespace MVVMSecondTry.ViewModels
 
         }
 
-        private void changeValues() {
-
-            ResDbEntities rde = new ResDbEntities();
-
-            foreach (UnitGroup group in rde.UnitGroups.ToList()) {
-                group.MaxProduction = group.MaxProduction++;
-            }
-
-        }
-
         private void refreshGroups() {
 
             ResDbEntities rde = new ResDbEntities();
 
-            foreach (UnitGroup group in rde.UnitGroups.ToList()) {
+            foreach (UnitGroup group in rde.UnitGroups.ToList().FindAll(x => x.lkResId == LKRES)) {
                 if (Groups.ToList().Exists(x => x.id == group.id) == false) {
-                    group.MaxProduction = 0;
                     Groups.Add(group);
                 }
             }
