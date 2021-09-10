@@ -17,6 +17,8 @@ namespace MVVMSecondTry.ViewModels
         private string productionPrice;
         private Unit selectedGenerator;
         private string selectedType;
+        private double minimumPowerProduction;
+        private double maximumPowerProduction;
         public ObservableCollection<Unit> Generators { get; set; }
         public List<string> Types { get; set; }
         public MyICommand addCommand { get; set; }
@@ -65,8 +67,8 @@ namespace MVVMSecondTry.ViewModels
 
             Unit generator = new Unit();
             generator.CurrentActivePower = 0;
-            generator.MaximumActivePower = 0;
-            generator.MinimumActivePower = 0;
+            generator.MaximumActivePower = maximumPowerProduction;
+            generator.MinimumActivePower = minimumPowerProduction;
             generator.ProductionPrice = float.Parse(productionPrice);
             generator.ControlType = "Local";
             generator.UnitType = selectedType;
@@ -131,6 +133,24 @@ namespace MVVMSecondTry.ViewModels
             set {
                 selectedType = value;
                 OnPropertyChanged("SelectedType");
+            }
+        }
+
+        public double MaximumPowerProduction {
+
+            get { return maximumPowerProduction; }
+            set {
+                maximumPowerProduction = value;
+                OnPropertyChanged("MaximumPowerProduction");
+            }
+        }
+
+        public double MinimumPowerProduction {
+
+            get { return minimumPowerProduction; }
+            set {
+                minimumPowerProduction = value;
+                OnPropertyChanged("MinimumPowerProduction");
             }
         }
 

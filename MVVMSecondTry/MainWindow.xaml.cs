@@ -23,5 +23,12 @@ namespace MVVMSecondTry
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+            using (ResDbEntities rde = new ResDbEntities()) {
+                rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes).active = false;
+                rde.SaveChanges();
+            }
+        }
     }
 }

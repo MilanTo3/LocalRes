@@ -21,7 +21,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="424,348,0,0" TextWrapping="Wrap" Text="{Binding ProductionPrice, TargetNullValue=''}" VerticalAlignment="Top" Width="172"/>
         <Label Content="{Binding MaximumActivePower, TargetNullValue='' }" HorizontalAlignment="Left" Margin="424,260,0,0" VerticalAlignment="Top" Width="172"/>
         <Label Content="{Binding MinimumActivePower, TargetNullValue='' }" HorizontalAlignment="Left" Margin="424,217,0,0" VerticalAlignment="Top" Width="172"/>
-        <Label Content="{Binding CurrentActivePower, TargetNullValue='' }" HorizontalAlignment="Left" Margin="424,173,0,0" VerticalAlignment="Top" Width="172"/>
+        <Label Content="{Binding CurrentActivePower, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="424,173,0,0" VerticalAlignment="Top" Width="172"/>
         <Label Content="{Binding UnitType, TargetNullValue=''}" HorizontalAlignment="Left" Margin="424,122,0,0" VerticalAlignment="Top" Width="172"/>
         <Label Content="{Binding GroupName, TargetNullValue=''}" HorizontalAlignment="Left" Margin="424,72,0,0" VerticalAlignment="Top" Width="172"/>
     </Grid>

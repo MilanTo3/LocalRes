@@ -59,9 +59,7 @@ namespace MVVMSecondTry.ViewModels
             viewGenerator = rde.Units.ToList().Find(x => x.id == viewGenerator.id);
 
             controlType = viewGenerator.ControlType;
-            currentActivePower = viewGenerator.CurrentActivePower ?? default(double);
-            maximumActivePower = viewGenerator.MaximumActivePower ?? default(double);
-            minimumActivePower = viewGenerator.MinimumActivePower ?? default(double);
+            CurrentActivePower = viewGenerator.CurrentActivePower ?? default(double);
             productionPrice = viewGenerator.ProductionPrice ?? default(double);
             unitType = viewGenerator.UnitType;
 

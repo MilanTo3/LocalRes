@@ -35,6 +35,8 @@ namespace MVVMSecondTry.ViewModels
             routeCommand = new MyICommand(onRoute);
             ResDbEntities rde = new ResDbEntities();
             WindowTitle = "Local Controller name: " + rde.LkRes.ToList().Find(x => x.id == LKRES).name;
+            rde.LkRes.ToList().Find(x => x.id == LKRES).active = true;
+            rde.SaveChanges();
             refreshGroups();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
             timer.Interval = new TimeSpan(0, 0, 10);
@@ -49,6 +51,10 @@ namespace MVVMSecondTry.ViewModels
 
         private void backCommand() {
             timer.Stop();
+            using (ResDbEntities rde = new ResDbEntities()) {
+                rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes).active = false;
+                rde.SaveChanges();
+            }
             navigate.Execute("start|");
         }
 

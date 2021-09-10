@@ -16,5 +16,6 @@ namespace MVVMSecondTry
     {
         public int id { get; set; }
         public string name { get; set; }
+        public Nullable<bool> active { get; set; }
     }
 }

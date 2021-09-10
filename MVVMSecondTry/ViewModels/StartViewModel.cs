@@ -56,7 +56,10 @@ namespace MVVMSecondTry.ViewModels
                 }
             }
             ((App)Application.Current).LkRes = lkres.id;
-
+            using (ResDbEntities rde = new ResDbEntities()) {
+                rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes).active = true;
+                rde.SaveChanges();
+            }
             navigate.Execute("group" + "|" + lkres.id);
 
         }

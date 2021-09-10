@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Content="Add Group" HorizontalAlignment="Left" Margin="345,375,0,0" VerticalAlignment="Top" Width="100"/>
-        <DataGrid Name="DgData" ItemsSource="{Binding Generators}" SelectedItem="{Binding SelectedGenerator}" HorizontalAlignment="Left" Height="306" Margin="10,89,0,0" VerticalAlignment="Top" Width="637" Background="White">
+        <DataGrid Name="DgData" ItemsSource="{Binding Generators}" SelectedItem="{Binding SelectedGenerator}" HorizontalAlignment="Left" Height="248" Margin="31,147,0,0" VerticalAlignment="Top" Width="637" Background="White">
             <DataGrid.Columns>
 
                 <!-- Add your normal columns here -->
@@ -30,16 +29,20 @@
         </DataGrid>
         <Label Content="{Binding WindowTitle}" HorizontalAlignment="Left" FontSize="17" Margin="22,10,0,0" VerticalAlignment="Top" Width="625" Height="33"/>
         <StackPanel Orientation="Vertical" Margin="0, 40, 0, 0">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Production Price: [$/kW]" Margin="20, 4, 0, 4"/>
-                <TextBox Margin="20, 4, 0, 4" Text="{Binding ProductionPrice}" Width="150"/>
-                <ComboBox ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType}" Margin="20, 4, 0, 4" Width="150"/>
-                <Button Content="Add" Margin="20, 4, 0, 4"
+            <StackPanel  Height="86">
+                <Label Content="Production Price: [$/kW]" Height="35" Width="140" Margin="-600, 4, 0, 0"/>
+                <TextBox Text="{Binding ProductionPrice}" Width="150" Height="30" Margin="-244, -40, 0, 0"/>
+                <ComboBox ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType}" Margin="100, -40, 0, 0" Width="150" Height="30"/>
+                <Button Content="Add" Margin="361,-40, 0, 0"
                     Width="75"
-                    Command="{Binding addCommand}" Height="22"/>
+                    Command="{Binding addCommand}" Height="30"/>
+                <Label Content="Minimum Power Production:" Width="171" Height="35" Margin="-571, 12, 0, 0"></Label>
+                <TextBox Text="{Binding MinimumPowerProduction}" Width="150" Height="30" Margin="-244, -40, 0, 0"/>
+                <Label Content="Maximum Power Production:" Width="171" Height="35" Margin="121, -34, 0, 0"></Label>
+                <TextBox Text="{Binding MaximumPowerProduction}" Width="150" Height="30" Margin="434, -40, 0, 0"/>
             </StackPanel>
         </StackPanel>
-        <Button Content="Back" Command="{Binding backNavigateCommand}" HorizontalAlignment="Left" Margin="667,375,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Back" Command="{Binding backNavigateCommand}" HorizontalAlignment="Left" Margin="673,375,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
-    
+
 </UserControl>

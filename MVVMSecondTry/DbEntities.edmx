@@ -11,6 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="bit" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -51,6 +52,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -90,6 +92,7 @@
           <EntitySetMapping Name="LkRes">
             <EntityTypeMapping TypeName="ResDbModel.LkRe">
               <MappingFragment StoreEntitySet="LkRes">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
