@@ -21,6 +21,5 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Active Local Controllers of Renewable energy resources:" HorizontalAlignment="Left" FontSize="17" Margin="22,10,0,0" VerticalAlignment="Top" Width="625" Height="33"/>
-        <Button Content="Back" Command="{Binding backNavigateCommand}" HorizontalAlignment="Left" Margin="657,355,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

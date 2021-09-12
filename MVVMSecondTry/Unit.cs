@@ -22,5 +22,6 @@ namespace MVVMSecondTry
         public string ControlType { get; set; }
         public Nullable<double> ProductionPrice { get; set; }
         public Nullable<int> GroupId { get; set; }
+        public Nullable<int> lkresid { get; set; }
     }
 }

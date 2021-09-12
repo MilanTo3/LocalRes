@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f7b3790c3f24407197e3648c0f8ee099" Name="Diagram1">
         <EntityTypeShape EntityType="ResDbModel.LkRe" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResDbModel.Unit" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResDbModel.Unit" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ResDbModel.UnitGroup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

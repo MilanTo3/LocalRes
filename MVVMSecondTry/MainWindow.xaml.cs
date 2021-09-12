@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +30,16 @@ namespace MVVMSecondTry
             using (ResDbEntities rde = new ResDbEntities()) {
                 rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes).active = false;
                 rde.SaveChanges();
+
+                MessageQueue billingQ = new MessageQueue();
+                billingQ.Path = @".\private$\nekiQueue";
+
+                Message m = new Message();
+                m.Formatter = new XmlMessageFormatter((new Type[] { typeof(String) }));
+                m.Body = JsonConvert.SerializeObject(rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes));
+                billingQ.Send(m);
             }
+
         }
     }
 }

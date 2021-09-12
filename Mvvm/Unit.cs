@@ -22,5 +22,7 @@ namespace Mvvm
         public Nullable<double> ProductionPrice { get; set; }
         public Nullable<int> GroupId { get; set; }
         public Nullable<double> MinimumActivePower { get; set; }
+        public Nullable<int> lkresid { get; set; }
+        public Nullable<int> onLocal { get; set; }
     }
 }

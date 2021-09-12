@@ -25,6 +25,7 @@
           <Property Name="ControlType" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductionPrice" Type="float" />
           <Property Name="GroupId" Type="int" />
+          <Property Name="lkresid" Type="int" />
         </EntityType>
         <EntityType Name="UnitGroup">
           <Key>
@@ -66,6 +67,7 @@
           <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductionPrice" Type="Double" />
           <Property Name="GroupId" Type="Int32" />
+          <Property Name="lkresid" Type="Int32" />
         </EntityType>
         <EntityType Name="UnitGroup">
           <Key>
@@ -101,6 +103,7 @@
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="ResDbModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="lkresid" ColumnName="lkresid" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="UnitType" ColumnName="UnitType" />
                 <ScalarProperty Name="CurrentActivePower" ColumnName="CurrentActivePower" />

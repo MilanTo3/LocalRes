@@ -12,6 +12,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="active" Type="bit" />
+          <Property Name="onLocal" Type="int" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -25,6 +26,8 @@
           <Property Name="ControlType" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductionPrice" Type="float" />
           <Property Name="GroupId" Type="int" />
+          <Property Name="lkresid" Type="int" />
+          <Property Name="onLocal" Type="int" />
         </EntityType>
         <EntityContainer Name="SystemControllerDbModelStoreContainer">
           <EntitySet Name="LkRes" EntityType="Self.LkRes" Schema="dbo" store:Type="Tables" />
@@ -41,6 +44,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Boolean" />
+          <Property Name="onLocal" Type="Int32" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -54,6 +58,8 @@
           <Property Name="ProductionPrice" Type="Double" />
           <Property Name="GroupId" Type="Int32" />
           <Property Name="MinimumActivePower" Type="Double" />
+          <Property Name="lkresid" Type="Int32" />
+          <Property Name="onLocal" Type="Int32" />
         </EntityType>
         <EntityContainer Name="SystemControllerDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="LkRes" EntityType="Self.LkRe" />
@@ -68,6 +74,7 @@
           <EntitySetMapping Name="LkRes">
             <EntityTypeMapping TypeName="SystemControllerDbModel.LkRe">
               <MappingFragment StoreEntitySet="LkRes">
+                <ScalarProperty Name="onLocal" ColumnName="onLocal" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="active" ColumnName="active" />
@@ -77,6 +84,8 @@
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="SystemControllerDbModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="onLocal" ColumnName="onLocal" />
+                <ScalarProperty Name="lkresid" ColumnName="lkresid" />
                 <ScalarProperty Name="MinimumActivePower" ColumnName="MinimumActivePower" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="UnitType" ColumnName="UnitType" />

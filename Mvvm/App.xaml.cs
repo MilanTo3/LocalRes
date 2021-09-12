@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mvvm.Stores;
+using Mvvm.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,7 +21,7 @@ namespace Mvvm
         protected override void OnStartup(StartupEventArgs e) {
 
             NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new StartViewModel(navigationStore);
+            navigationStore.CurrentViewModel = new LkResViewModel(navigationStore);
 
             MainWindow = new MainWindow() {
                 DataContext = new MainViewModel(navigationStore)

@@ -45,7 +45,7 @@ namespace MVVMSecondTry.ViewModels
             WindowTitle = "Group name: " + rde.UnitGroups.ToList().Find(x => x.id == int.Parse(groupId)).UnitName;
             refreshGroups();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 2);
             timer.Start();
 
         }
@@ -73,6 +73,7 @@ namespace MVVMSecondTry.ViewModels
             generator.ControlType = "Local";
             generator.UnitType = selectedType;
             generator.GroupId = int.Parse(GroupId);
+            generator.lkresid = ((App)Application.Current).LkRes;
 
             using (ResDbEntities rde = new ResDbEntities()) {
                 rde.Units.Add(generator);

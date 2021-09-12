@@ -38,9 +38,9 @@ namespace Mvvm.ViewModels
             ControlTypes = new List<string>();
             ControlTypes.Add("Local");
             ControlTypes.Add("Remote");
-            GroupName = rde.UnitGroups.ToList().Find(x => x.id == viewGenerator.GroupId).UnitName;
+            GroupName = rde.LkRes.ToList().Find(x => x.onLocal == viewGenerator.lkresid).name;
             timer.Tick += new EventHandler(UpdateTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 4);
             timer.Start();
 
         }
@@ -70,10 +70,10 @@ namespace Mvvm.ViewModels
             viewGenerator.ProductionPrice = productionPrice;
             viewGenerator.ControlType = controlType;
         }
-
+        
         private void backCommand() {
             timer.Stop();
-            navigate.Execute("generators" + "|" + viewGenerator.GroupId.ToString());
+            navigate.Execute("generators" + "|" + viewGenerator.lkresid.ToString());
         }
 
         public string ControlType {

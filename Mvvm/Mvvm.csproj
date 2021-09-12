@@ -76,10 +76,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbEntities.Designer.cs">
+    <Compile Include="DbEntities2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbEntities.edmx</DependentUpon>
+      <DependentUpon>DbEntities2.edmx</DependentUpon>
     </Compile>
     <Compile Include="LkRe.cs">
       <DependentUpon>DbEntities.tt</DependentUpon>
@@ -146,12 +146,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DbEntities.edmx">
+    <EntityDeploy Include="DbEntities2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>DbEntities2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DbEntities.edmx.diagram">
-      <DependentUpon>DbEntities.edmx</DependentUpon>
+    <None Include="DbEntities2.edmx.diagram">
+      <DependentUpon>DbEntities2.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -166,11 +166,11 @@
     <Content Include="DbEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DbEntities.Context.cs</LastGenOutput>
-      <DependentUpon>DbEntities.edmx</DependentUpon>
+      <DependentUpon>DbEntities2.edmx</DependentUpon>
     </Content>
     <Content Include="DbEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbEntities.edmx</DependentUpon>
+      <DependentUpon>DbEntities2.edmx</DependentUpon>
       <LastGenOutput>DbEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>

@@ -28,7 +28,7 @@ namespace Mvvm.Stores
             else if (info[0] == "generator") {
                 _navigationStore.CurrentViewModel = new GeneratorViewModel(info[1], _navigationStore);
             }
-            else if (info[0] == "start") {
+            else if (info[0] == "lkres") {
                 _navigationStore.CurrentViewModel = new LkResViewModel(_navigationStore);
             }
         }

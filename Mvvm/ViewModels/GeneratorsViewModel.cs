@@ -22,27 +22,31 @@ namespace Mvvm.ViewModels
         public ICommand navigate;
         private DispatcherTimer timer = new DispatcherTimer();
         public string WindowTitle { get; set; }
+        private int LkResId;
 
-        public GeneratorsViewModel(string groupId, NavigationStore navigationStore) {
+        public GeneratorsViewModel(string lkresid, NavigationStore navigationStore) {
 
+            LkResId = int.Parse(lkresid);
             backNavigateCommand = new MyICommand(backCommand);
             routeCommand = new MyICommand(onRoute);
             Generators = new ObservableCollection<Unit>();
             navigate = new NavigateCommand(navigationStore);
             SystemControllerDbEntities rde = new SystemControllerDbEntities();
-            WindowTitle = "LkRes name: " + rde.UnitGroups.ToList().Find(x => x.id == int.Parse(groupId)).UnitName;
+            WindowTitle = "LkRes name: " + rde.LkRes.ToList().Find(x => x.onLocal == LkResId).name;
             refreshGroups();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 4);
             timer.Start();
 
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs args) {
 
-            List<Unit> dbgenerators = new SystemControllerDbEntities().Units.ToList().FindAll(x => x.GroupId == id);
+            List<Unit> dbgenerators = new SystemControllerDbEntities().Units.ToList().FindAll(x => x.lkresid == LkResId);
 
             int i;
+            refreshGroups();
+
             for (i = 0; i < Generators.Count; i++) {
                 Unit temp = dbgenerators.Find(x => x.id == Generators[i].id);
                 if (temp != null && temp != Generators[i]) {
@@ -65,8 +69,8 @@ namespace Mvvm.ViewModels
 
             SystemControllerDbEntities rde = new SystemControllerDbEntities();
 
-            int id = int.Parse(GroupId);
-            foreach (Unit generator in rde.Units.ToList().FindAll(x => x.GroupId == id)) {
+            int id = int.Parse("0"); //here!
+            foreach (Unit generator in rde.Units.ToList().FindAll(x => x.lkresid == LkResId)) {
                 if (Generators.ToList().Exists(x => x.id == generator.id) == false) {
                     Generators.Add(generator);
                 }

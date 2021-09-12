@@ -1,8 +1,10 @@
 ﻿using MVVMSecondTry.Stores;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,7 +41,7 @@ namespace MVVMSecondTry.ViewModels
             rde.SaveChanges();
             refreshGroups();
             timer.Tick += new EventHandler(UpdateTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 4);
             timer.Start();
 
         }
@@ -55,7 +57,23 @@ namespace MVVMSecondTry.ViewModels
                 rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes).active = false;
                 rde.SaveChanges();
             }
+            sendLkResOffSignal();
             navigate.Execute("start|");
+        }
+
+        private void sendLkResOffSignal() {
+            using (ResDbEntities rde = new ResDbEntities()) {
+                rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes).active = false;
+                rde.SaveChanges();
+
+                MessageQueue billingQ = new MessageQueue();
+                billingQ.Path = @".\private$\nekiQueue";
+
+                Message m = new Message();
+                m.Formatter = new XmlMessageFormatter((new Type[] { typeof(String) }));
+                m.Body = JsonConvert.SerializeObject(rde.LkRes.ToList().Find(x => x.id == ((App)Application.Current).LkRes));
+                billingQ.Send(m);
+            }
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs args) {

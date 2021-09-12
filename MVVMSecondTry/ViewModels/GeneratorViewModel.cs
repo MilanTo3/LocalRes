@@ -39,7 +39,7 @@ namespace MVVMSecondTry.ViewModels
             ControlTypes.Add("Remote");
             GroupName = rde.UnitGroups.ToList().Find(x => x.id == viewGenerator.GroupId).UnitName;
             timer.Tick += new EventHandler(UpdateTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 10);
+            timer.Interval = new TimeSpan(0, 0, 4);
             timer.Start();
 
         }
@@ -66,8 +66,14 @@ namespace MVVMSecondTry.ViewModels
         }
 
         private void updateMethodCommand() {
+            ResDbEntities rde = new ResDbEntities();
             viewGenerator.ProductionPrice = productionPrice;
             viewGenerator.ControlType = controlType;
+            Unit unit = rde.Units.ToList().Find(x => x.id == viewGenerator.id);
+            unit.ProductionPrice = viewGenerator.ProductionPrice;
+            unit.ControlType = viewGenerator.ControlType;
+            rde.SaveChanges();
+
         }
 
         private void backCommand() {
