@@ -31,14 +31,20 @@
         <Label Content="{Binding WindowTitle}" HorizontalAlignment="Left" FontSize="17" Margin="22,10,0,0" VerticalAlignment="Top" Width="625" Height="33"/>
         <StackPanel Orientation="Vertical" Margin="0, 40, 0, 0">
             <StackPanel Orientation="Horizontal">
+                <Label Margin="21, 4, 0, 4">Set system consumption:</Label>
+                <TextBox Margin="20, 4, 0, 4" Text="{Binding SystemConsumption}" Width="150"/>
+                <Separator></Separator>
                 <Label Content="Group Name:" Margin="20, 4, 0, 4"/>
                 <TextBox Margin="20, 4, 0, 4" Text="{Binding GroupName}" Width="150"/>
                 <Button Content="Add" Margin="20, 4, 0, 4"
                     Width="75"
                     Command="{Binding addCommand}" Height="22"/>
             </StackPanel>
-            
+
         </StackPanel>
         <Button Content="Back" Command="{Binding backNavigateCommand}" HorizontalAlignment="Left" Margin="652,375,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="LkRes consumption/production:" HorizontalAlignment="Left" Margin="10,395,0,0" VerticalAlignment="Top" Width="184" Height="37"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="194,395,0,0" VerticalAlignment="Top" Width="453"/>
+
     </Grid>
 </UserControl>

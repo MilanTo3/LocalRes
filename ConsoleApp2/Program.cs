@@ -1,4 +1,5 @@
-﻿using Mvvm;
+﻿using ClassLibrary1;
+using Mvvm;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,7 @@ namespace ConsoleApp2
                         mq.Purge();
                         List<MVVMSecondTry.Unit> unitsDataSerialized = new List<MVVMSecondTry.Unit>();
                         List<MVVMSecondTry.LkRe> lkresDataSerialized = new List<MVVMSecondTry.LkRe>();
+                        List<Switcher> switches = new List<Switcher>(); 
                         foreach (Message message in m) {
                             try {
                                 unitsDataSerialized.AddRange(JsonConvert.DeserializeObject<List<MVVMSecondTry.Unit>>(message.Body.ToString()));
@@ -75,13 +77,20 @@ namespace ConsoleApp2
                                     lkresDataSerialized.Add(JsonConvert.DeserializeObject<MVVMSecondTry.LkRe>(message.Body.ToString()));
                                 }
                                 catch {
-
+                                   
                                 }
                             }
-                            
+                            try {
+                                switches.Add(JsonConvert.DeserializeObject<Switcher>(message.Body.ToString()));
+                            }
+                            catch {
+
+                            }
+
                         }
                         obradiListu(unitsDataSerialized);
                         obradiLkResove(lkresDataSerialized);
+                        obradiSwitcheve(switches);
                     }
                     catch {
 
@@ -90,8 +99,26 @@ namespace ConsoleApp2
 
                 transaction.Commit();
 
-                Thread.Sleep(10000);
+                Thread.Sleep(9000);
             }
+        }
+
+        private static void obradiSwitcheve(List<Switcher> switches) {
+
+            SystemControllerDbEntities rde = new SystemControllerDbEntities();
+
+            int i;
+            List<Unit> dbgenerators = rde.Units.ToList();
+            for (i = 0; i < switches.Count; i++) {
+                Unit temp = dbgenerators.Find(x => x.onLocal == switches[i].generatorid);
+                if (temp != null) {
+
+                    temp.ControlType = switches[i].state;
+                    rde.SaveChanges();
+                }
+
+            }
+
         }
 
         private static void obradiLkResove(List<MVVMSecondTry.LkRe> listaInfo) {
@@ -141,7 +168,6 @@ namespace ConsoleApp2
             foreach (MVVMSecondTry.Unit unit in listaInfo) {
                 if (rde.Units.ToList().Exists(x => x.onLocal == unit.id) == false) {
                     Unit newUnit = new Unit();
-                    newUnit.ControlType = unit.ControlType;
                     newUnit.CurrentActivePower = unit.CurrentActivePower;
                     newUnit.GroupId = unit.GroupId;
                     newUnit.lkresid = unit.lkresid;
@@ -149,6 +175,7 @@ namespace ConsoleApp2
                     newUnit.MinimumActivePower = unit.MinimumActivePower;
                     newUnit.UnitType = unit.UnitType;
                     newUnit.ProductionPrice = unit.ProductionPrice;
+                    newUnit.ControlType = unit.ControlType;
                     newUnit.onLocal = unit.id;
 
                     rde.Units.Add(newUnit);
@@ -162,9 +189,7 @@ namespace ConsoleApp2
                 Unit temp = dbgenerators.Find(x => x.onLocal == listaInfo[i].id);
                 if (temp != null) {
                     
-                    temp.ControlType = listaInfo[i].ControlType;
                     temp.CurrentActivePower = listaInfo[i].CurrentActivePower;
-                    temp.UnitType = listaInfo[i].UnitType;
                 }
                 
             }

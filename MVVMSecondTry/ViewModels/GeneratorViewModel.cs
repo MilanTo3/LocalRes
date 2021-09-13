@@ -1,7 +1,10 @@
-﻿using MVVMSecondTry.Stores;
+﻿using ClassLibrary1;
+using MVVMSecondTry.Stores;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -73,6 +76,19 @@ namespace MVVMSecondTry.ViewModels
             unit.ProductionPrice = viewGenerator.ProductionPrice;
             unit.ControlType = viewGenerator.ControlType;
             rde.SaveChanges();
+            sendSwitcher();
+
+        }
+
+        private void sendSwitcher() {
+
+            MessageQueue billingQ = new MessageQueue();
+            billingQ.Path = @".\private$\nekiQueue";
+
+            Message m = new Message();
+            m.Formatter = new XmlMessageFormatter((new Type[] { typeof(String) }));
+            m.Body = JsonConvert.SerializeObject(new Switcher((int)viewGenerator.lkresid, viewGenerator.id, viewGenerator.ControlType));
+            billingQ.Send(m);
 
         }
 

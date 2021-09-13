@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm", "Mvvm\Mvvm.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemController", "ConsoleApp2\SystemController.csproj", "{975B7993-B36D-4022-936A-1AA2D61269E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{975B7993-B36D-4022-936A-1AA2D61269E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975B7993-B36D-4022-936A-1AA2D61269E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975B7993-B36D-4022-936A-1AA2D61269E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{7C70F320-6CA1-4A9D-8976-ECCFC18E2442} = {7A6432BA-4BE1-4B73-BABF-4932F42F1AD7}
 		{10E32AF8-88FA-471E-B81B-6AA93C781C37} = {071A474C-D4ED-48CC-B258-09DEEDF8D844}
 		{975B7993-B36D-4022-936A-1AA2D61269E4} = {071A474C-D4ED-48CC-B258-09DEEDF8D844}
+		{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE} = {509404AE-4DFF-4DDB-851B-806CDF8F9931}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACABD6B3-BB6E-4A8A-B023-7BCAADF98810}

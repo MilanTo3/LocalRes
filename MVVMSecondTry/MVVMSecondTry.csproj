@@ -195,5 +195,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+      <Project>{F58D7DBA-827E-4DFD-97A8-81477BBEB7BE}</Project>
+      <Name>ClassLibrary1</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

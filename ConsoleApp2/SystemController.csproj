@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+      <Project>{f58d7dba-827e-4dfd-97a8-81477bbeb7be}</Project>
+      <Name>ClassLibrary1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVVMSecondTry\MVVMSecondTry.csproj">
       <Project>{0abd2140-835e-447a-b223-367ed80c7065}</Project>
       <Name>MVVMSecondTry</Name>
